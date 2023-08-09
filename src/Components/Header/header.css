@@ -1,0 +1,21 @@
+.header {
+  width: calc(100% - 48px);
+  height: 48px;
+  padding: 6px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--G5);
+  color: #ffffff;
+  border-bottom: 1px solid var(--G2);
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.dummy {
+  width: 114px;
+  height: 32px;
+}
