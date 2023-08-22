@@ -38,3 +38,8 @@ code {
   width: calc(100% - 380px) !important;
   overflow: hidden;
 }
+
+.frame {
+  width: 100%;
+  height: 100%;
+}

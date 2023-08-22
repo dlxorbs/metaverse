@@ -1,7 +1,6 @@
 import React from "react";
 import "../index.css";
 
-import VRScene from "./VRScene";
 import Button from "../Components/Button/Buttons";
 import TitleHead from "../Components/Title/Titlehead";
 import Header from "../Components/Header/Header";
@@ -15,7 +14,7 @@ export default function Mainpage() {
       <Header></Header>
       <div className="sideWrapper">
         <BigSidebar></BigSidebar>
-        <iframe className="frame" src="index7.html"></iframe>
+        <iframe className="frame" src="index2.html"></iframe>
       </div>
     </div>
   );
