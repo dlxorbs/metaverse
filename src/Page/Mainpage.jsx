@@ -15,7 +15,7 @@ export default function Mainpage() {
       <Header></Header>
       <div className="sideWrapper">
         <BigSidebar></BigSidebar>
-        <VRScene></VRScene>
+        <iframe className="frame" src="index7.html"></iframe>
       </div>
     </div>
   );

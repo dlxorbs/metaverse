@@ -12,8 +12,11 @@
 
 .BigSidebar {
   display: flex;
+  top: 60px;
   width: 380px;
-  height: 100%;
+  height: calc(100% - 60px);
+  position: absolute;
+  z-index: 99999;
 }
 
 .Sidebar {

@@ -3,6 +3,7 @@ import { Entity, Scene } from "aframe-react";
 import React from "react";
 import ReactDOM from "react-dom";
 import "../index.css";
+import glb from "./asdasdsa.glb";
 
 export default function VRScene() {
   return (
@@ -10,7 +11,7 @@ export default function VRScene() {
       <Entity
         class={"a"}
         park={""}
-        geometry={{ primitive: "box" }}
+        gltf-model={glb}
         material={{ color: "red" }}
         position={{ x: 0, y: 0, z: -5 }}
       />
