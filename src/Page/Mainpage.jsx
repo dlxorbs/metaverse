@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState } from "react";
 import "../index.css";
 
 import Button from "../Components/Button/Buttons";
@@ -29,10 +29,7 @@ function createMarkup() {
           <a-scene id="first">
             <!-- 에셋 제작 -->
             <a-asset>
-              <a-asset-item
-                id="character"
-                src="https://cdn.glitch.global/1d4e7720-9782-4efe-a989-a9063f99c126/human.glb?v=1689124282337"
-              ></a-asset-item>
+            
               <a-asset-item id="npc" src="./glb/human2.glb"></a-asset-item>
               <a-asset-item
                 id="map"
@@ -43,22 +40,32 @@ function createMarkup() {
                 src="https://cdn.glitch.global/6fa6aec4-5e4b-465e-ae5e-092f559a7f71/nav.glb?v=1688481354605"
               ></a-asset-item>
             </a-asset>
-            <!-- 이렇게 들어가야 카메라가 움직이는것을 받아올 수 있음 -->
-            <a-sphere></a-sphere>
+      
+            <a-box></a-box>
             <a-sky color="#99ccff" radius="400"></a-sky>
           </a-scene>
         </body>
+     
       </html>
+      //스크립트 태그
       `,
   };
 }
 
 export default function Mainpage() {
+  const [fileName, setfileName] = useState("첨부파일을 넣어주세요.");
+
   return (
     <div className="PageWrapper">
       <Header></Header>
       <div className="sideWrapper">
-        <BigSidebar></BigSidebar>
+        <BigSidebar
+          valueMap={fileName}
+          placeholderMap={fileName}
+          onChangeMap={(e) => {
+            setfileName(e.target.value);
+          }}
+        ></BigSidebar>
         <div className="frame" dangerouslySetInnerHTML={createMarkup()}></div>
       </div>
     </div>
