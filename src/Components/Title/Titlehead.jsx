@@ -5,8 +5,8 @@ import Button from "../Button/Buttons";
 export default function TitleHead(props) {
   return (
     <div className={styles.TitleHead}>
-      <h1>{props.Title || "제목"}</h1>
-      <span>{props.content || "콘텐트"}</span>
+      <h1>{props.Title || "입력된 제목이 없습니다."}</h1>
+      <span>{props.Content || "입력된 텍스트가 없습니다."}</span>
 
       {props.type == "buttontype" ? <Button /> : ""}
     </div>

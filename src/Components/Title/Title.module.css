@@ -16,9 +16,11 @@
 
 .TitleHead > span {
   width: 228px;
-  font-size: 16px;
+  font-size: var(--fontSize-1);
   height: auto;
   margin-bottom: 24px;
+  line-height: 150%;
+  text-align: justify;
 }
 
 .Contextcard {
@@ -40,7 +42,7 @@
 
 .Contextcard > span {
   width: 228px;
-  font-size: 16px;
+  font-size: var(--fontSize-1);
   height: auto;
   margin-bottom: 24px;
 }

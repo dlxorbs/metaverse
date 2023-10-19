@@ -1,0 +1,13 @@
+.result{
+    background-color: var(--G5);
+    position: absolute;
+    width: calc(100% - 380px);
+    top: 60px;
+    left: 380px;
+    height: calc(100% - 60px);
+    color: white;
+}
+
+.Resultnumber{
+    background-color: var(--G6);
+}

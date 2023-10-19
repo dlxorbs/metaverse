@@ -3,6 +3,10 @@
   height: 32px;
 }
 
+.icons:last-child {
+  margin-top: auto;
+}
+
 .iconWrapper {
   position: relative;
   width: 100%;
