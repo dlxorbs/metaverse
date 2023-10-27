@@ -101,3 +101,58 @@
 .SmallactionButton:active .buttonanimation {
   animation: Click 1.5s ease-in;
 }
+
+/* 결과창 탭 */
+.InterectionTab{
+  box-sizing: border-box;
+  padding: 0px 20px;
+  display: flex;
+  color: var(--G1);
+  font-weight: 700;
+  justify-content: space-around;
+  height: 100px;
+  height: 56px;
+  align-items: center;
+  font-size: 19px;
+  border-bottom: 1px solid var(--G4);
+}
+.Tab{
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  line-height: 56px;
+  text-align: center;
+  box-sizing: border-box;
+}
+.Bottom_Line{
+  border-bottom: 2px solid var(--M1);
+}
+
+.icons{
+  background-color: var(--M1);
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.InterectionButton{
+  color: var(--font-color-second);
+  background-color: var(--G3);
+  border: none;
+  margin-top: 8px;
+  font-size: 15px;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.InterectionButton div{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-sizing: border-box;
+}
+
+.InteractionButton_h{
+  border: 3px solid var(--M1);
+  box-shadow: 2px 0px 12px rgba(33, 32, 34);
+}
+

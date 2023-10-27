@@ -8,7 +8,7 @@ export default function TitleHead(props) {
       <h1>{props.Title || "입력된 제목이 없습니다."}</h1>
       <span>{props.Content || "입력된 텍스트가 없습니다."}</span>
 
-      {props.type == "buttontype" ? <Button /> : ""}
+      {props.type == "buttontype" ? <Button selectedIcon={props.selectedIcon} onClick={() => props.setInputText('text')} /> : ""}
     </div>
   );
 }
