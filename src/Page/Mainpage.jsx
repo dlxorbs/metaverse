@@ -1,5 +1,7 @@
 import { React, useState } from "react";
 import "../index.css";
+import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+
 
 import Button from "../Components/Button/Buttons";
 import TitleHead from "../Components/Title/Titlehead";
@@ -8,65 +10,53 @@ import Sidebar from "../Components/SideBar/Sidebar";
 import Sidebarleft from "../Components/SideBar/Sidebarleft";
 import BigSidebar from "../Components/SideBar/BigSidebar";
 
-function createMarkup() {
-  return {
-    __html: `<!DOCTYPE html>
-      <html>
-        <head>
-          <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-          <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.2/dist/aframe-physics-system.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@fb96ab2/dist/aframe-extras.js"></script>
-          <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script>
-          <script
-            src="https://code.jquery.com/jquery-3.7.0.min.js"
-            integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
-            crossorigin="anonymous"
-          ></script>
-          <link rel="stylesheet" href="style.css" />
-        </head>
-        <body>
-          <a-scene id="first">
-            <!-- 에셋 제작 -->
-            <a-asset>
-            
-              <a-asset-item id="npc" src="./glb/human2.glb"></a-asset-item>
-              <a-asset-item
-                id="map"
-                src="https://cdn.glitch.me/6fa6aec4-5e4b-465e-ae5e-092f559a7f71/metaverse.glb?v=1688481055830"
-              ></a-asset-item>
-              <a-asset-item
-                id="nav-mesh"
-                src="https://cdn.glitch.global/6fa6aec4-5e4b-465e-ae5e-092f559a7f71/nav.glb?v=1688481354605"
-              ></a-asset-item>
-            </a-asset>
-      
-            <a-box></a-box>
-            <a-sky color="#99ccff" radius="400"></a-sky>
-          </a-scene>
-        </body>
-     
-      </html>
-      //스크립트 태그
-      `,
-  };
-}
+import mapImg_top from "../Components/Img/mapImg_top.png";
+
+import Mappage from "../UiPage/Mappage";
+import Resultpage from "../UiPage/Resultpage";
 
 export default function Mainpage() {
   const [fileName, setfileName] = useState("첨부파일을 넣어주세요.");
+  const [navfileName, setnavfileName] = useState("네비게이션 파일을 넣어주세요.");
 
+  const [selectedIcon, setSelectedIcon] = useState("result");
+  // 선택된 아이콘
+
+  const handleIconClick = (iconName) => {
+    setSelectedIcon(iconName);
+  };
+  // 현재 선택된 아이콘으로 selectedIcon을 바꿔줌
+  
   return (
     <div className="PageWrapper">
       <Header></Header>
       <div className="sideWrapper">
         <BigSidebar
+          selectedIcon={selectedIcon}
+          handleIconClick={handleIconClick}
           valueMap={fileName}
           placeholderMap={fileName}
+          valueNav={navfileName}
           onChangeMap={(e) => {
             setfileName(e.target.value);
           }}
         ></BigSidebar>
-        <div className="frame" dangerouslySetInnerHTML={createMarkup()}></div>
+        {selectedIcon === "map" && <Mappage fileName={fileName}/>}
+        {selectedIcon === "box" && <div className="Boxframe">
+            <span></span>
+            <span></span>
+            <span></span>
+            <img src={mapImg_top} alt=""></img>
+          </div>}
+        {selectedIcon === "gitbranch" && <div></div>}
+        {selectedIcon === "result" && <Resultpage/>}
+        {selectedIcon === "play" && <div className="frame">
+            <iframe
+              title="Local Page"
+              src="http://localhost:8080"
+              frameborder={0} framespacing={0} marginheight={0} marginwidth={0}  vspace={0}
+            ></iframe>
+          </div>}
       </div>
     </div>
   );

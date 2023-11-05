@@ -1,0 +1,12 @@
+.Graphic_Circle{
+    position: absolute;
+    top: var(--top);
+    left: var(--left);
+    transform: scale(1) translateX(calc((var(--size)*-1)/2)) translateY(calc((var(--size)*-1)/2));
+}
+.Graphic_Circle div{
+    width: var(--size);
+    height: var(--size);
+    background-color: rgba(255, 0, 0, 0.226);
+    border-radius: 50%;
+}

@@ -1,0 +1,112 @@
+.map, .result{
+    background-color: var(--G5);
+    position: absolute;
+    width: calc(100% - 380px);
+    height: calc(100% - 60px);
+    overflow: auto;
+    overflow-x: hidden;
+    top: 60px;
+    left: 380px;
+    color: white;
+}
+
+.map{
+    font-size: 24px;
+    color: var(--G2);
+    background-color: var(--G1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Fixedarea{
+    /* background-color: #22252f; */
+    background-image: linear-gradient(to bottom, #22252F, #22252f 20%, #22252f 96%, #22252f00 100%);
+    width: 100%;
+    height: 220px;
+    padding: 33px;
+}
+
+.Fixedarea h1{
+    font-size: var(--fontSize-UI-Title);
+    margin-top: 60px;
+    margin-bottom: 24px;
+}
+
+.Resultnumber{
+    background-color: var(--G6);
+    width: 1000px;
+    display: flex;
+}
+
+.Resultnumber div{
+    flex: 1;
+    padding: 30px;
+}
+
+.Resultnumber div h2{
+    font-size: var(--fontSize-UI-Result-Number);
+    line-height: 100%;
+    margin: 0;
+}
+
+.Resultnumber div p{
+    margin: 0;
+    display: inline-block;
+    color: var(--font-color-second);
+    font-size: var(--fontSize-UI-Context-Number);
+}
+
+.Movearea{
+    padding: 33px;
+    height: calc(100% - 60px);
+}
+
+.Movearea .foot_traffic{}
+.Movearea .foot_traffic h1{
+    font-size: var(--fontSize-UI-Title);
+    margin-bottom: 24px;
+}
+.Movearea .foot_traffic .Img{}
+
+.Movearea .flex_box{
+    display: flex;
+    margin-top: 186px;
+    justify-content: space-between;
+}
+
+.Movearea .flex_box h1{
+    font-size: var(--fontSize-UI-Title);
+}
+
+.Movearea .flex_box .foot_traffic2{
+    flex: 1.8;
+}
+
+.Movearea .flex_box .foot_traffic2>div{
+    display: flex;
+    flex-wrap: wrap;
+    gap:24px;
+}
+
+.Movearea .flex_box .zone{
+    padding-left: 44px;
+    box-sizing: border-box;
+    flex: 1;
+    border-left: 1px solid var(--G2);
+    top: 100px;
+}
+
+.Movearea .flex_box .zone .Img{
+    display: flex;
+    justify-content: start;
+}
+
+
+.Drawing_circle{
+    width: 1131px;
+    height: 442px;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+}
