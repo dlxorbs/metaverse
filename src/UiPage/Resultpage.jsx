@@ -19,22 +19,30 @@ export default function Resultpage() {
     )
 
     const [data, setData] = useState([])
+    // useEffect(function () {
+    //     async function fetchLocationData() {
+    //         try {
+    //             const response = await fetch(process.env.PUBLIC_URL + 'data.json');
+    //             if (!response.ok) {
+    //                 throw new Error("Failed to fetch data");
+    //             }
+    //             const data = await response.json();
+    //             setData(data.locationdata);
+    //         } catch (error) {
+    //             console.error(error);
+    //         }
+    //     console.log(data)
+    //     }
+    //     fetchLocationData();
+    // }, []);
+    
     useEffect(function () {
-        async function fetchLocationData() {
-            try {
-                const response = await fetch(process.env.PUBLIC_URL + 'data.json');
-                if (!response.ok) {
-                    throw new Error("Failed to fetch data");
-                }
-                const data = await response.json();
-                setData(data.locationdata);
-            } catch (error) {
-                console.error(error);
-            }
-        }
-        fetchLocationData();
-    }, []);
-
+        db.collection('post').get().then(function(qs){
+            qs.forEach(function(doc){
+                console.log(doc.data())
+            })
+        })
+    })
 
     let radius = 0;
 
