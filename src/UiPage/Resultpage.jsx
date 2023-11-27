@@ -7,6 +7,8 @@ import Graphic_Circle from "../Components/Graphic/Graphic_Circle";
 
 import Section_Card from "../Components/Card/Section_Card";
 
+import {db} from '../database.js'
+
 export default function Resultpage() {
     function Img(props) {
         return <div className={styles.Img}>{props.children}</div>;
@@ -37,12 +39,10 @@ export default function Resultpage() {
     // }, []);
     
     useEffect(function () {
-        db.collection('post').get().then(function(qs){
-            qs.forEach(function(doc){
-                console.log(doc.data())
-            })
-        })
-    })
+        db.collection('post').doc('11-27').get().then(function(doc){
+            console.log(doc.data())
+          })
+    }, [])
 
     let radius = 0;
 
