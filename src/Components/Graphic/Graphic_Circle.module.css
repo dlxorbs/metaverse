@@ -10,3 +10,14 @@
     background-color: rgba(255, 0, 0, 0.226);
     border-radius: 50%;
 }
+
+.Color0 div{
+    background-color: rgba(17, 0, 255, 0.226);
+}
+.Color1 div{
+    background-color: rgba(255, 0, 140, 0.226);
+}
+.Color2 div{
+    background-color: rgba(9, 255, 0, 0.226);
+}
+
