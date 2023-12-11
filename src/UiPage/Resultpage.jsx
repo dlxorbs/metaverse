@@ -4,7 +4,7 @@ import {ReactComponent as Map} from "../Components/Img/Map.svg";
 import {ReactComponent as Map_vertical} from "../Components/Img/Map_vertical.svg";
 import {ReactComponent as Map_section} from "../Components/Img/Map_section.svg";
 import Graphic_Circle from "../Components/Graphic/Graphic_Circle";
-
+import IdProfile from "../Components/Button/idProfile";
 import Section_Card from "../Components/Card/Section_Card";
 
 import {db} from '../database.js'
@@ -13,6 +13,7 @@ export default function Resultpage() {
     function Img(props) {
         return <div className={styles.Img}>{props.children}</div>;
     }
+    
 
     const Data_List = [1, 2, 3, 4]
     const a = 1
@@ -20,66 +21,97 @@ export default function Resultpage() {
         (number) => (<Section_Card number={number} key={number}/>)
     )
 
-    const [data, setData] = useState([])
-    // useEffect(function () {
-    //     async function fetchLocationData() {
-    //         try {
-    //             const response = await fetch(process.env.PUBLIC_URL + 'data.json');
-    //             if (!response.ok) {
-    //                 throw new Error("Failed to fetch data");
-    //             }
-    //             const data = await response.json();
-    //             setData(data.locationdata);
-    //         } catch (error) {
-    //             console.error(error);
-    //         }
-    //     console.log(data)
-    //     }
-    //     fetchLocationData();
-    // }, []);
+    const [datas, setDatas] = useState([]);
+
+    const [ids, setIds] = useState();
     
     useEffect(function () {
-        db.collection('post').doc('11-27').get().then(function(doc){
-            console.log(doc.data())
-          })
-    }, [])
+        db.collection('post').doc('Test').get().then(function(doc){
+            const dataValues = Object.values(doc.data());
+            setDatas(dataValues);
+            let temidset = [];
+            dataValues.map((item, index) => {
+                temidset.push({
+                    id: item.id,
+                    active: true
+                });
+            });
+            setIds(temidset);
+        });
+    }, []);
+    
+    const changeId = (index) => {
+        const newIds = [...ids];
+        
+        newIds[index] = { ...newIds[index], active: !newIds[index].active };
+    
+        setIds(newIds);
+    };
 
     let radius = 0;
 
-    // const [radius, setRadius] = useState(40);
-    const Circle_List = data.map((item, index) => {
-        const dataX = (-parseFloat(item.X) + 47.6)*4.628;
-        const dataZ = (parseFloat(item.Z) + 154.29)*4.628;
-        
-        let distance = 0;
 
-        if(index !== 0){
-            const x1 = parseFloat(data[index -1].X);
-            const z1 = parseFloat(data[index -1].Z);
-            const x2 = parseFloat(data[index].X);
-            const z2 = parseFloat(data[index].Z);
-            distance = Math.sqrt((x2 - x1) ** 2 + (z2 - z1) ** 2);
-        }
 
-        if (distance < 1) {
-            radius = radius + 1;
-            if (radius > 15.0) {
-              radius = 15;
+    const Circle_Lists = datas.map((item, index) => {
+
+        let  temporary_1 = item;
+        let  temporary_2 = index;
+        let  id = item.id;
+
+
+        const Circle_List = item.positiondata.map((item, index) => {
+            const dataX = (-parseFloat(item.x) + 47.6)*4.628;
+            const dataZ = (parseFloat(item.z) + 154.29)*4.628;
+
+            let distance = 0;
+            
+            if(index !== 0){
+                const x1 = parseFloat(temporary_1.positiondata[index -1].x);
+                const z1 = parseFloat(temporary_1.positiondata[index -1].z);
+                const x2 = parseFloat(temporary_1.positiondata[index].x);
+                const z2 = parseFloat(temporary_1.positiondata[index].z);
+                distance = Math.sqrt((x2 - x1) ** 2 + (z2 - z1) ** 2);
             }
-          } else {
-            radius = 3;
-          }
 
+            if (distance < 1) {
+                radius = radius + 1;
+                if (radius > 15.0) {
+                  radius = 15;
+                }
+              } else {
+                radius = 3;
+              }
+
+            return (
+                <Graphic_Circle
+                    top={dataX}
+                    left={dataZ}
+                    size={radius*8}
+                    id={id}
+                    number={temporary_2}
+                    key={index}
+                    visible={ids[temporary_2].active}
+                />
+              );
+        })
         return (
-          <Graphic_Circle
-            top={dataX}
-            left={dataZ}
-            size={radius*8}
-            number={item}
-            key={index}
-          />
+            Circle_List
         );
-      });
+    })
+
+
+    const idProfile = datas.map((item, index) => {
+        return(
+            <IdProfile
+                id={item.id}
+                key={index}
+                state={ids[index].active}
+                onClick={() => changeId(index)}
+                visible={ids[index].active}
+            />
+        )
+    })
+ 
 
     return (
         <div className={styles.result}>
@@ -107,10 +139,13 @@ export default function Resultpage() {
             <div className={styles.Movearea}>
                 <div className={styles.foot_traffic}>
                     <h1>시간별 동선과 겹치는 정도</h1>
+                        <div className={styles.idProfileWrap}>
+                            {idProfile}
+                        </div>
                     <Img>
                         <div className={styles.Drawing_circle}>
                             <Map height={442}></Map>
-                            {Circle_List}
+                            {Circle_Lists}
                         </div>
                     </Img>
                 </div>
