@@ -156,3 +156,33 @@
   box-shadow: 2px 0px 12px rgba(33, 32, 34);
 }
 
+.idProfile{
+  padding: 10px 20px 10px 12px;
+  background-color: var(--G3);
+  border: 0px;
+  border-radius: 50px;
+  color: var(--font-color-second);
+  font-size: var(--fontSize-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.idProfile div{
+  width: 24px;
+  height: 24px;
+  background-color: var(--G8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.idProfile div svg{
+  transform: translate(0px,1px);
+}
+
+.active>div{
+  background-color: var(--M1);
+}

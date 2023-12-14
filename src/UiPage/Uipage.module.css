@@ -110,3 +110,9 @@
     position: relative;
     overflow: hidden;
 }
+
+.idProfileWrap{
+    gap: 12px;
+    display: flex;
+    margin-bottom: 14px;
+}
