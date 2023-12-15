@@ -5,6 +5,7 @@ import {ReactComponent as Map_vertical} from "../Components/Img/Map_vertical.svg
 import {ReactComponent as Map_section} from "../Components/Img/Map_section.svg";
 import Graphic_Circle from "../Components/Graphic/Graphic_Circle";
 import IdProfile from "../Components/Button/idProfile";
+import ResultProfile from "../Components/Button/ResultProfile";
 import Section_Card from "../Components/Card/Section_Card";
 
 import {db} from '../database.js'
@@ -14,7 +15,6 @@ export default function Resultpage() {
         return <div className={styles.Img}>{props.children}</div>;
     }
     
-
     const Data_List = [1, 2, 3, 4]
     const a = 1
     const Section_Card_List = Data_List.map(
@@ -22,7 +22,6 @@ export default function Resultpage() {
     )
 
     const [datas, setDatas] = useState([]);
-
     const [ids, setIds] = useState();
     
     useEffect(function () {
@@ -42,15 +41,11 @@ export default function Resultpage() {
     
     const changeId = (index) => {
         const newIds = [...ids];
-        
         newIds[index] = { ...newIds[index], active: !newIds[index].active };
-    
         setIds(newIds);
     };
 
     let radius = 0;
-
-
 
     const Circle_Lists = datas.map((item, index) => {
 
@@ -99,7 +94,14 @@ export default function Resultpage() {
         );
     })
 
+// 결과값 아래에 나오는 개인의 정보
+    const resultProfile = datas.map((item, index) => {
+        return(
+            <ResultProfile/>
+        )    
+    })
 
+// 시간별 동선과 겹치는 정도 아래에 나오는 라디오 프로필 버튼
     const idProfile = datas.map((item, index) => {
         return(
             <IdProfile
@@ -134,6 +136,9 @@ export default function Resultpage() {
                         <h2>1명</h2>
                         <p>중요 이벤트와 상호작용X</p>
                     </div>
+                </div>
+                <div className={styles.resultProfileWrap}>
+                    {resultProfile}
                 </div>
             </div>
             <div className={styles.Movearea}>
