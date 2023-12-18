@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./Graphic_Circle.module.css";
+import styles from "./Graphic.module.css";
 export default function Graphic_Circle(props) {
-  const number = `Color${props.number}`;
+  const number = `LineColor${props.number}`;
   const display = props.visible ? 'block' : 'none';
   return (
     <div className={`${styles.Graphic_Circle} ${styles[number]}`}

@@ -37,6 +37,8 @@
     width: 1000px;
     display: flex;
     border-radius: 4px;
+    padding: 0px 20px;
+    box-sizing: border-box;
 }
 
 .Resultnumber div{
@@ -111,6 +113,11 @@
     overflow: hidden;
 }
 
+.svg{
+    position: absolute;
+    z-index: 1;
+}
+
 .idProfileWrap{
     gap: 12px;
     display: flex;
@@ -118,23 +125,32 @@
 }
 
 .resultProfileWrap{
-    background-color: rgb(36, 9, 41);
+    box-sizing: border-box;
     display: inline-block;
     width: 1000px;
     border-radius: 4px;
+    border: 1px solid var(--G2);
+    overflow: hidden;
 }
-
 .resultProfileWrap div ul{
     padding: 0;
-    background-color: #5b6585;
     margin: 0;
-    border: 1px red solid;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between;  
+    border-top: 1px solid var(--G2);
+}
+
+.resultProfileWrap div:nth-child(1) ul{
+    border: none;
+}
+
+.resultProfileWrap div:nth-child(1){
+    background-color: var(--G6);
 }
 
 .resultProfileWrap div ul li{
-    border: 1px blue solid;
+    font-size: 14px;
+    padding: 12px 20px;
     list-style:none;
-    width: 200px;
+    flex: 100px;
 }
