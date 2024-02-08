@@ -53,7 +53,7 @@ export default function Mainpage() {
         {selectedIcon === "play" && <div className="frame">
             <iframe
               title="Local Page"
-              src="http://localhost:8080"
+              src="http://211.248.120.68:9876/"
               frameborder={0} framespacing={0} marginheight={0} marginwidth={0}  vspace={0}
             ></iframe>
           </div>}

@@ -29,6 +29,7 @@ export default function Resultpage() {
     useEffect(function () {
         db.collection('post').doc('Test').get().then(function(doc){
             const dataValues = Object.values(doc.data());
+            console.log(dataValues)
             setDatas(dataValues);
             let temidset = [];
             dataValues.map((item, index) => {
@@ -143,15 +144,35 @@ export default function Resultpage() {
         );
     })
 
+// 결과값에 나오는 종합 정보
+    const resultAll = () => {
+        const spacedataValues = datas.map(item => item.spacedata);
+        const averageSpacedata = spacedataValues.reduce((acc, value) => acc + value, 0) / spacedataValues.length;
+        const timedataValues = datas.map(item => item.timedata);
+        const averageTimedata = timedataValues.reduce((acc, value) => acc + value, 0) / timedataValues.length;
+        const eventdataValues = datas.map(item => Object.values(item.eventdata).filter(value => value === true).length);
+        const averageEventdata = eventdataValues.reduce((acc, value) => acc + value, 0) / eventdataValues.length;
+
+
+        return(
+            {
+                space : averageSpacedata.toFixed(2),
+                time : averageTimedata,
+                event : averageEventdata,
+            }
+        )
+    };
+
 // 결과값 아래에 나오는 개인의 정보
     const resultProfile = datas.map((item, index) => {
-        console.log(item)
+        const trueCount = Object.values(item.eventdata).filter(value => value === true).length;
+        console.log(datas)
         return(
             <ResultProfile
                 Id={item.id}
-                Space={'Space'}
-                Time={'Time'}
-                Event={'Event'}
+                Space={item.spacedata}
+                Time={item.timedata}
+                Event={trueCount}
             />
         )    
     })
@@ -176,15 +197,15 @@ export default function Resultpage() {
                 <h1>결과 값</h1>
                 <div className={styles.Resultnumber}>
                     <div>
-                        <h2>23.3%</h2>
+                        <h2>{resultAll().space}%</h2>
                         <p>전체 공간 탐색 비율</p>
                     </div>
                     <div>
-                        <h2>16.0s</h2>
+                        <h2>{resultAll().time}초</h2>
                         <p>평균 공간 체류 시간</p>
                     </div>
                     <div>
-                        <h2>1명</h2>
+                        <h2>{resultAll().event}개</h2>
                         <p>중요 이벤트와 상호작용X</p>
                     </div>
                 </div>
